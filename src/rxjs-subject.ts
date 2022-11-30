@@ -14,6 +14,8 @@ const subject = new Subject();
 // subject.next(2);
 // subject.next(3);
 
+// void subject
+
 subject.subscribe({
   next: () => console.log('One second has passed'),
 });
