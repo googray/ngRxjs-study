@@ -1,26 +1,21 @@
 import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 
-// const subject = new Subject<number>();
-// const subject = new BehaviorSubject<number>(0);
-const subject = new ReplaySubject<number>(2);
+//some examples from https://dev.to/devbyrayray/when-use-rxjs-subject-behavioursubject-replaysubject-asyncsubject-or-void-subject-in-angular-4pn9
+const subject = new Subject();
 
-subject.next(1);
-subject.next(2);
+// subject.subscribe({
+//   next: (v) => console.log(`observerA: ${v}`),
+// });
+// subject.next(1);
+// subject.subscribe({
+//   next: (v) => console.log(`observerB: ${v}`),
+// });
 
-console.log('before 1 subs');
-let value = 0;
-subject.subscribe((val) => {
-  console.log('first: ', val);
-  value = val;
+// subject.next(2);
+// subject.next(3);
+
+subject.subscribe({
+  next: () => console.log('One second has passed'),
 });
-console.log('after 1 subs', value);
 
-subject.next(3);
-
-console.log('before 2 subs');
-subject.subscribe((val) => console.log('second: ', val));
-console.log('after 2 subs');
-
-subject.next(4);
-
-subject.subscribe((val) => console.log('third : ', val));
+setTimeout(() => subject.next(1), 1000);
